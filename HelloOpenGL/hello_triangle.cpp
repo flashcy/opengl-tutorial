@@ -95,15 +95,24 @@ int main() {
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	// ------------------------------------------------------------------
 	float vertices[] = {
-		-0.5f, -0.5f, 0.0f, // left
-		 0.5f, -0.5f, 0.0f, // right
-		 0.0f,  0.5f, 0.0f  // top
+		// 공유 정점을 통합하여,
+		 0.5f,  0.5f, 0.0f,	// top right
+		 0.5f, -0.5f, 0.0f,	// bottom right
+		-0.5f, -0.5f, 0.0f,	// bottom left
+		-0.5f,  0.5f, 0.0f	// top left
 	};
 
-	unsigned int VBO, VAO;
+	unsigned int indices[] = {
+		// 정점 인덱스를 통해 삼각형 구성
+		0, 1, 3,	// 첫번째 삼각형
+		1, 2, 3		// 두번째 삼각형
+	};
+
+	unsigned int VBO, VAO, EBO;
 	// VAO와 VBO를 각각의 방식대로 생성한다.
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
 	// VAO -> VBO로 연결되는 방식. 따라서 VAO를 먼저 bind 한 후, VBO를 bind 해 데이터를 지정한다.
 	glBindVertexArray(VAO);
 
@@ -117,12 +126,15 @@ int main() {
 	// 또한 위치는 vec3이다. 이는 float 세 개이므로 stride(사잇값)는 float * 3으로 지정해준다.
 	// gl에서 버퍼 배열을 stride 만큼 끊어서 입력으로 병렬처리한다.
 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
 	// unbind (for safe)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
 	// 와이어프레임으로 볼 수 있게 해주는 함수
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// render loop
 	// -----------
@@ -139,7 +151,8 @@ int main() {
 		// draw a triangle
 		glUseProgram(shaderProgram);		// 쉐이더에
 		glBindVertexArray(VAO);				// 위에서 정의한 VAO 대로 입력을 넣고,
-		glDrawArrays(GL_TRIANGLES, 0, 3);	// 그린다.
+		//glDrawArrays(GL_TRIANGLES, 0, 3);	// 그린다.
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);	// 2개의 삼각형 -> 6개의 꼭짓점 (6개의 인덱스)
 		//glBindVertexArray(0); // no need to unbind it every time
 
 		// glfw : swap buffers and poll IO events
