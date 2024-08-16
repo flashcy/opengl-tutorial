@@ -21,5 +21,8 @@
     <ClCompile Include="HelloOpengl.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="hello_triangle.cpp">
+      <Filter>리소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
