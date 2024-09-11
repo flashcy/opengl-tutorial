@@ -18,10 +18,13 @@
     <ClCompile Include="glad.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="HelloOpengl.cpp">
+    <ClCompile Include="hello_opengl.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="hello_triangle.cpp">
+      <Filter>리소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="hello_shader.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
