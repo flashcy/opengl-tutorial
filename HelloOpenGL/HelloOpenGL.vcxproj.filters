@@ -28,4 +28,13 @@
       <Filter>리소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="shader_s.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="3.3.shader.vs" />
+    <None Include="3.3.shader.fs" />
+  </ItemGroup>
 </Project>
