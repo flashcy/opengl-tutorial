@@ -18,13 +18,7 @@
     <ClCompile Include="glad.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="hello_opengl.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="hello_triangle.cpp">
-      <Filter>리소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="hello_shader.cpp">
+    <ClCompile Include="textures.cpp">
       <Filter>리소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,9 +26,17 @@
     <ClInclude Include="shader_s.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="3.3.shader.vs" />
-    <None Include="3.3.shader.fs" />
+    <None Include="4.1.textures.vs" />
+    <None Include="4.1.textures.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="container.jpg">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>
