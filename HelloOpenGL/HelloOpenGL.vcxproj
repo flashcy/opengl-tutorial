@@ -149,9 +149,6 @@
     <None Include="4.1.textures.fs" />
     <None Include="4.1.textures.vs" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="container.jpg" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

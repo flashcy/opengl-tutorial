@@ -34,9 +34,4 @@
     <None Include="4.1.textures.vs" />
     <None Include="4.1.textures.fs" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="container.jpg">
-      <Filter>리소스 파일</Filter>
-    </Image>
-  </ItemGroup>
 </Project>
