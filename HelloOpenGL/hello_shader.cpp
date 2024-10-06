@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "shader_s.h"
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
@@ -55,6 +57,10 @@ int main() {
 		return -1;
 	}
 
+	Shader ourShader("3.3.shader.vs", "3.3.shader.fs");
+
+	/*
+
 	// build and compile a shader program
 	// ----------------------------------
 	// vertex shader
@@ -96,6 +102,8 @@ int main() {
 	// Program에 링킹이 완료된 쉐이더는 Delete 해준다.
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
+
+	*/
 
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	// ------------------------------------------------------------------
@@ -145,13 +153,14 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// draw a triangle
-		glUseProgram(shaderProgram);
+		//glUseProgram(shaderProgram);
+		ourShader.use();
 
 		// update the uniform color
 		float timeValue = glfwGetTime();												// 시간 값을 가져온다.
 		float greenValue = sin(timeValue) / 2.0f + 0.5f;								// 시간 값을 사인파로 만든 뒤, [0, 1] 사이로 진폭을 가둔다.
-		int vertexColorLocation = glGetUniformLocation(shaderProgram, "greenValue");	// greenValue라는 uniform 타입의 쉐이더 변수의 주소를 가져온다.
-		glUniform1f(vertexColorLocation, greenValue);									// 가져온 주소에 값을 넣어준다.
+		//int vertexColorLocation = glGetUniformLocation(shaderProgram, "greenValue");	// greenValue라는 uniform 타입의 쉐이더 변수의 주소를 가져온다.
+		ourShader.setFloat("greenValue", greenValue);									// 가져온 주소에 값을 넣어준다.
 		// 즉, uniform 변수 지정 후, 쉐이더 in out 지정하여 처리
 
 		glBindVertexArray(VAO);				// 위에서 정의한 VAO 대로 입력을 넣고,
@@ -168,7 +177,7 @@ int main() {
 	// ------------------------------------------------------------------------
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
-	glDeleteProgram(shaderProgram);
+	//glDeleteProgram(shaderProgram);
 
 	// glfw: terminate, clearing all previously allocated GLFW resources.
 	// ------------------------------------------------------------------
